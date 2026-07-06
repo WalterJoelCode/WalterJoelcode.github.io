@@ -1,9 +1,10 @@
+
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: 'https://waltercode.github.io',
-  base: '/inicio',
+  base: '/NOMBRE_DE_TU_REPOSITORIO', // ⚠️ CAMBIA ESTO por el nombre de tu repo
   outDir: './dist',
   output: 'static',
   vite: {
@@ -13,7 +14,8 @@ export default defineConfig({
       sourcemap: false,
     },
   },
-  build: {
-    assets: 'assets',
-  },
+  // ❌ ELIMINA esta sección, no es necesaria y puede causar problemas
+  // build: {
+  //   assets: 'assets',
+  // },
 });
