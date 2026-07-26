@@ -3,7 +3,10 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: 'https://waltercode.github.io',
-  base: '/inicio',
+  // This repository is deployed as the waltercode.github.io user site, not a
+  // project site. A project base here would make every generated asset 404.
+  base: '/',
+  trailingSlash: 'always',
   outDir: './dist',
   output: 'static',
   vite: {

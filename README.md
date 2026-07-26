@@ -40,7 +40,7 @@ npm run preview
 ## 🌐 Acceso
 
 - **Local Development**: http://localhost:3000
-- **Production**: https://waltercode.github.io/waltercode-portfolio
+- **Production**: https://waltercode.github.io
 
 ## 📦 Scripts Disponibles
 
@@ -79,7 +79,7 @@ Type Check: npm run check
   ↓
 Deploy: Push a GitHub Pages
   ↓
-Live: https://waltercode.github.io/waltercode-portfolio (~2-3 min)
+Live: https://waltercode.github.io (~2-3 min)
 ```
 
 **Ver [DEPLOYMENT_SETUP.md](./DEPLOYMENT_SETUP.md) para configuración detallada.**
@@ -131,7 +131,7 @@ git push origin main
 ```javascript
 {
   site: 'https://waltercode.github.io',
-  base: '/waltercode-portfolio',
+  base: '/',
   outDir: './dist',
   output: 'static'  // Para GitHub Pages
 }
@@ -195,7 +195,7 @@ Las dependencias se actualizan automáticamente mediante:
 
 ## 📝 Notas Importantes
 
-- ⚠️ El `base: '/waltercode-portfolio'` es obligatorio (repo project page)
+- ⚠️ Este repositorio se publica como sitio de usuario, por lo que `base: '/'` es obligatorio.
 - ⚠️ El `output: 'static'` es requerido para GitHub Pages
 - ⚠️ Los links internos deben incluir el `base` path
 - ✅ GitHub Actions copia automáticamente `./dist` a GitHub Pages

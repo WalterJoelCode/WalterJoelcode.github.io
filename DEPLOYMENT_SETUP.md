@@ -5,7 +5,7 @@
 ### 1. **Astro Config** (`astro.config.mjs`)
 ```javascript
 - site: 'https://waltercode.github.io'
-- base: '/waltercode-portfolio'
+- base: '/'
 - outDir: './dist'
 - output: 'static' // Optimizado para GitHub Pages
 - build.minify: 'terser' // Minificación de código
@@ -135,7 +135,7 @@ npm run astro     # CLI de Astro
 ### Estado en Tiempo Real
 - **Actions Tab**: Ver logs del workflow
 - **Deployments**: Settings → Deployments para historial completo
-- **GitHub Pages**: `https://waltercode.github.io/waltercode-portfolio`
+- **GitHub Pages**: `https://waltercode.github.io`
 
 ### Logs del Workflow
 1. Ve a **Actions** en GitHub
@@ -160,7 +160,7 @@ npm run build
 3. Verifica `DEPLOYMENT_STATUS` en GitHub
 
 ### ❌ 404 Not Found
-- Asegúrate que el `base` en astro.config.mjs es `/waltercode-portfolio`
+- Asegúrate que el `base` en astro.config.mjs es `/`
 - Los links internos deben incluir el base path
 
 ### ❌ Dependencias conflictivas
@@ -195,9 +195,9 @@ npm run check
 ## 📝 Notas Importantes
 
 ### GitHub Pages
-- El `base: '/waltercode-portfolio'` es obligatorio (repo ≠ user page)
+- El `base: '/'` es obligatorio porque este repositorio corresponde a un sitio de usuario.
 - Los archivos se sirven desde `./dist` automáticamente
-- El dominio es `https://waltercode.github.io/waltercode-portfolio`
+- El dominio es `https://waltercode.github.io`
 
 ### Workflow
 - Se ejecuta automáticamente en cada push a `main`
@@ -234,9 +234,8 @@ npm run check
 
 4. **Verificar deployment**
    - Ve a **Actions** para ver el workflow
-   - Luego a `https://waltercode.github.io/waltercode-portfolio`
+   - Luego a `https://waltercode.github.io`
 
 ---
 
 **Última actualización**: 2026-06-16
-
