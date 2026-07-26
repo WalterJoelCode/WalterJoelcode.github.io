@@ -24,7 +24,7 @@ Tu proyecto Astro está completamente configurado para **GitHub Pages** con **CI
 
 3. **Sitio disponible en 2-3 minutos**
    ```
-   https://waltercode.github.io/waltercode-portfolio
+   https://waltercode.github.io
    ```
 
 ## 📋 Cambios Realizados en Esta Sesión
@@ -79,7 +79,7 @@ Usa Vercel en lugar de GitHub Pages (costo mínimo o gratis)
    - Debe estar verde ✅
 
 2. **Ver el sitio en vivo**
-   - https://waltercode.github.io/waltercode-portfolio
+   - https://waltercode.github.io
 
 3. **Hacer cambios y ver auto-deploy**
    ```bash
@@ -111,7 +111,7 @@ npm run build
 - Limpia cache del navegador
 
 ### 404 Not Found
-- El `base` debe ser `/waltercode-portfolio`
+- El `base` debe ser `/`
 - Links internos deben incluir el base path
 
 ---

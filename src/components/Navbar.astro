@@ -1,24 +1,23 @@
 ---
-import { Image } from "astro:assets";
-
 const { pathname } = Astro.url;
+const base = import.meta.env.BASE_URL;
 
 let links: string[];
-const linkNames = ["Home", "About", "Projects", "Services"];
+const linkNames = ["Inicio", "Sobre mí", "Tecnologías", "Habilidades", "Proyectos", "Contacto"];
 
-if (pathname == "/") {
-  links = ["#home", "#about", "#projects", "#services"];
+if (pathname === base || pathname === "/") {
+  links = ["#home", "#about", "#technologies", "#skills", "#projects", "#contact"];
 } else {
-  links = ["/", "/#about", "/projects", "/#services"];
+  links = [base, `${base}#about`, `${base}#technologies`, `${base}#skills`, `${base}projects/`, `${base}#contact`];
 }
 ---
 
 <header
   class="max-w-screen-lg mx-auto flex flex-wrap justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50 lg:rounded-b-md border border-gray-300 dark:border-neutral-800 backdrop-blur-xs bg-white/95 dark:bg-gray-950/95"
 >
-  <a href="/" class="hover:scale-110 transition-transform duration-300">
-    <Image
-      src="/logo.webp"
+  <a href={base} class="hover:scale-110 transition-transform duration-300">
+    <img
+      src={`${base}logo.webp`}
       class="size-16 object-contain object-center bg-transparent"
       alt="Logo"
       width={64}
