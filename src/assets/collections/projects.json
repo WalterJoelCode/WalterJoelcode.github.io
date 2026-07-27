@@ -1,34 +1,34 @@
 [
   {
-    "name": "Sistema de Gestión Hotelera",
-    "description": "Plataforma para administrar reservas, huéspedes, habitaciones, pagos y reportes operativos de un hotel.",
+    "name": "FlossCueroSystem",
+    "description": "Sistema web para el control de inventario, facturación, control de clientes, seguimiento de envíos de una tienda local, incluye reportes y estadísticas. Desarrollada como proyecto de graduación para título de ingeniería en sistemas, con una calificación de 100 puntos.",
     "urlImg": "/projects/gotosend.webp",
-    "technologies": ["Laravel", "Livewire", "MySQL"],
+    "technologies": ["Laravel", "Livewire", "MySQL", "DomPDF"],
     "github": "https://github.com/TU_USUARIO/sistema-gestion-hotelera",
     "demo": "https://demo.example.com/sistema-gestion-hotelera"
   },
   {
-    "name": "Sistema POS para Tienda de Calzado",
-    "description": "Punto de venta con inventario por talla, control de caja, clientes y facturación para comercio minorista.",
+    "name": "SIGEPRO",
+    "description": "Propuesta de plataforma web para el control y automatización del seguimiento de los protagonistas de educación técnica del tecnológico nacional durante el proceso de prácticas profesionales.",
     "urlImg": "/projects/d-kanto.webp",
-    "technologies": ["Laravel", "Bootstrap", "MySQL"],
+    "technologies": ["Laravel", "Bootstrap", "MySQL", "Livewire", "DomPDF"],
     "github": "https://github.com/TU_USUARIO/pos-tienda-calzado",
     "demo": "https://demo.example.com/pos-tienda-calzado"
   },
   {
-    "name": "Sistema de Gestión de Prácticas Profesionales",
-    "description": "Portal académico para seguimiento de prácticas, calendario de actividades, evaluación y generación de informes PDF.",
+    "name": "StockOne",
+    "description": "Sistema web mejorado para el control de inventario, facturación y crédito, UI & UX optimizado para ofrecer una mejor experiencia al usuario.",
     "urlImg": "/projects/d-kanto-admin.webp",
     "technologies": ["Laravel", "Livewire", "Calendar", "PDF"],
     "github": "https://github.com/TU_USUARIO/gestion-practicas-profesionales",
     "demo": "https://demo.example.com/gestion-practicas"
   },
   {
-    "name": "Dashboard Administrativo",
-    "description": "Panel de indicadores para centralizar métricas operativas, reportes y seguimiento de procesos administrativos.",
-    "urlImg": "/projects/amazon-redesign-thinking.webp",
-    "technologies": ["Astro", "TypeScript", "Chart.js"],
-    "github": "https://github.com/TU_USUARIO/dashboard-administrativo",
-    "demo": "https://demo.example.com/dashboard-administrativo"
+    "name": "HoteleríaTec",
+    "description": "Propuesta de plataforma web para el control y automatización del proceso de atención y facturación a comensales en el área de restaurante del Tecnológico Nacional. Una estrategia innovadora, pedagógica y tecnológica desarrollada como una herramienta dentro del aula de clases.",
+    "urlImg": "/projects/d-kanto.webp",
+    "technologies": ["Laravel", "Bootstrap", "MySQL", "Livewire", "DomPDF"],
+    "github": "https://github.com/TU_USUARIO/pos-tienda-calzado",
+    "demo": "https://demo.example.com/pos-tienda-calzado"
   }
 ]
