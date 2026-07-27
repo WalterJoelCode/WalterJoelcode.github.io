@@ -3,8 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: 'https://walterjoelcode.github.io',
-  // GitHub Pages deploys this project repository below its repository name.
-  base: '/Waltercode.github.io',
+  base: '/',
   trailingSlash: 'always',
   outDir: './dist',
   output: 'static',
