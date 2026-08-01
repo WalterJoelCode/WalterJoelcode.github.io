@@ -1,0 +1,50 @@
+---
+interface Image { src: string; alt: string; }
+interface Props { images: Image[]; }
+const { images } = Astro.props;
+---
+
+{images.length > 0 && (
+  <div class="group/gallery relative min-w-0 max-w-full overflow-hidden" data-gallery>
+    <div class="flex min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth rounded-lg pb-3 [scrollbar-width:thin]" data-gallery-track tabindex="0" aria-label="Galería del proyecto">
+      {images.map((image, index) => (
+        <figure class="basis-full shrink-0 snap-center">
+          <img src={image.src} alt={image.alt} class="aspect-video w-full rounded-lg border border-gray-300 object-cover dark:border-neutral-800" width="960" height="540" loading={index === 0 ? "eager" : "lazy"} />
+        </figure>
+      ))}
+    </div>
+    {images.length > 1 && (
+      <>
+        <div class="mt-3 flex items-center justify-between gap-4">
+          <div class="flex gap-2" aria-label="Indicadores de galería">
+            {images.map((_, index) => <button class="size-2.5 cursor-pointer rounded-full bg-gray-300 transition-colors first:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:bg-neutral-700 dark:first:bg-blue-400" aria-label={`Ir a la imagen ${index + 1}`} data-gallery-dot={index}></button>)}
+          </div>
+          <div class="flex gap-2">
+            <button class="cursor-pointer rounded-md border border-gray-300 px-3 py-1.5 text-sm font-semibold text-gray-950 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-800 dark:text-white dark:hover:bg-gray-900" data-gallery-prev aria-label="Imagen anterior">Anterior</button>
+            <button class="cursor-pointer rounded-md border border-gray-300 px-3 py-1.5 text-sm font-semibold text-gray-950 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-800 dark:text-white dark:hover:bg-gray-900" data-gallery-next aria-label="Imagen siguiente">Siguiente</button>
+          </div>
+        </div>
+        <script>
+          document.querySelectorAll<HTMLElement>("[data-gallery]").forEach((gallery) => {
+            const track = gallery.querySelector<HTMLElement>("[data-gallery-track]");
+            const dots = [...gallery.querySelectorAll<HTMLButtonElement>("[data-gallery-dot]")];
+            const slides = [...(track?.querySelectorAll<HTMLElement>("figure") ?? [])];
+            if (!track) return;
+            let activeIndex = 0;
+            const goTo = (index: number) => {
+              activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+              track.scrollTo({ left: slides[activeIndex]?.offsetLeft ?? 0, behavior: "smooth" });
+            };
+            gallery.querySelector("[data-gallery-prev]")?.addEventListener("click", () => goTo(activeIndex - 1));
+            gallery.querySelector("[data-gallery-next]")?.addEventListener("click", () => goTo(activeIndex + 1));
+            dots.forEach((dot, index) => dot.addEventListener("click", () => goTo(index)));
+            track.addEventListener("scroll", () => {
+              activeIndex = slides.reduce((closest, slide, index) => Math.abs(slide.offsetLeft - track.scrollLeft) < Math.abs(slides[closest].offsetLeft - track.scrollLeft) ? index : closest, 0);
+              dots.forEach((dot, index) => dot.classList.toggle("!bg-blue-700", index === activeIndex));
+            }, { passive: true });
+          });
+        </script>
+      </>
+    )}
+  </div>
+)}
