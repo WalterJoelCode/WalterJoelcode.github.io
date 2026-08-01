@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjectHero from "../../components/project-documentation/ProjectHero.astro";
+import ProjectGallery from "../../components/project-documentation/ProjectGallery.astro";
+import ProjectSection from "../../components/project-documentation/ProjectSection.astro";
+import InstitutionalCards from "../../components/project-documentation/InstitutionalCards.astro";
+import ObjectivesList from "../../components/project-documentation/ObjectivesList.astro";
+import TechnologyCards from "../../components/project-documentation/TechnologyCards.astro";
+import CollaboratorsCards from "../../components/project-documentation/CollaboratorsCards.astro";
+import { hoteleriatec } from "../../data/projects/hoteleriatec";
+
+export const prerender = true;
+---
+
+<Layout>
+  <div class="flex min-w-0 flex-col gap-10 overflow-hidden sm:gap-12">
+    <ProjectHero title={hoteleriatec.title} description={hoteleriatec.shortDescription} logo={hoteleriatec.logo} github={hoteleriatec.github} />
+    <ProjectSection title="Galería" id="galeria"><ProjectGallery images={hoteleriatec.gallery} /></ProjectSection>
+    <ProjectSection title="Descripción general" id="descripcion"><p class="max-w-3xl text-base leading-6 text-gray-600 dark:text-gray-400">{hoteleriatec.generalDescription}</p></ProjectSection>
+    
+    <ProjectSection title="Contextualización" id="contexto">
+      <p class="max-w-3xl text-base leading-6 text-gray-600 dark:text-gray-400">HoteleríaTec surge como una propuesta de innovación pedagógica orientada a fortalecer el proceso de enseñanza-aprendizaje en la carrera de Técnico General en Servicio de Restaurante, Bar y Cafetería, específicamente en la unidad Técnicas de Venta y Sistema de Facturación en el Restaurante. La estrategia consiste en la implementación de un sistema de información diseñado con un enfoque educativo, que permite a las y los protagonistas interactuar con un entorno similar al que encontrarán en establecimientos gastronómicos modernos. El entorno formativo presenta una oportunidad significativa para incorporar herramientas tecnológicas que acerquen a los estudiantes a las dinámicas actuales del sector gastronómico. En muchos casos, el contacto con sistemas de punto de venta o plataformas de gestión ocurre únicamente cuando ingresan al mercado laboral, generando una curva de aprendizaje adicional. Ante esta realidad, HoteleríaTec ofrece un ambiente de simulación que permite practicar procedimientos reales dentro del aula, fortaleciendo la integración entre teoría y práctica mediante escenarios interactivos que favorecen el aprendizaje activo y el desarrollo de competencias digitales aplicadas al servicio de restaurante.</p>
+    </ProjectSection>
+
+    <ProjectSection title="Lineamientos institucionales" id="lineamientos">
+      <InstitutionalCards cards={[
+        { title: "Estrategia Nacional de Educación en todas sus Modalidades “Bendiciones y Victorias” 2024 - 2026 ", description: "Fortalecer el aprendizaje técnico mediante experiencias digitales aplicadas a procesos reales de servicio.", icon: "mission" },
+        { title: "Plan Nacional de Lucha contra la Pobreza y para el Desarrollo Humano 2022-2026", description: "Impulsar una formación innovadora donde tecnología, gestión y atención al cliente se conecten.", icon: "vision" },
+        { title: "Programa Nacional de Creatividad, Investigación, Innovación, Emprendimiento y Tecnología", description: "Responsabilidad, colaboración, mejora continua y compromiso con una atención de calidad.", icon: "values" },
+        { title: "Metodología educativa Aprender-Haciendo del Tecnológico Nacional (INATEC)", description: "Diseño centrado en las personas, información confiable y procesos claros para el aula y la operación.", icon: "principles" },
+      ]} />
+    </ProjectSection>
+
+    <ProjectSection title="Objetivos" id="objetivos">
+      <ObjectivesList objectives={[
+        "Desarrollar un sistema de información educativo para simular los procesos operativos del área de restaurante.",
+        "Fortalecer el aprendizaje teórico y práctico previo al mundo laboral mediante la simulación de procesos propios del servicio de restaurante.",
+        "Potenciar las competencias profesionales y digitales de los protagonistas del área de restaurante mediante el uso de herramientas tecnológicas.",
+      ]} />
+    </ProjectSection>
+
+    <ProjectSection title="Tecnologías" id="tecnologias"><TechnologyCards technologies={hoteleriatec.technologies} /></ProjectSection>
+    <ProjectSection title="Colaboradores" id="colaboradores"><CollaboratorsCards collaborators={hoteleriatec.collaborators} /></ProjectSection>
+  </div>
+</Layout>

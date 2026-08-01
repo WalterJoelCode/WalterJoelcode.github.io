@@ -2,13 +2,32 @@
 const { pathname } = Astro.url;
 const base = import.meta.env.BASE_URL;
 
-let links: string[];
-const linkNames = ["Inicio", "Sobre mí", "Tecnologías", "Habilidades", "Proyectos", "Contacto"];
+let links: { href: string; label: string }[];
+const isProjectRoute = pathname.includes("/projects") || pathname.includes("/proyectos");
 
 if (pathname === base || pathname === "/") {
-  links = ["#home", "#about", "#technologies", "#skills", "#projects", "#contact"];
+  links = [
+    { href: "#home", label: "Inicio" },
+    { href: "#about", label: "Sobre mí" },
+    { href: "#technologies", label: "Tecnologías" },
+    { href: "#skills", label: "Habilidades" },
+    { href: "#projects", label: "Proyectos" },
+    { href: "#contact", label: "Contacto" },
+  ];
+} else if (isProjectRoute) {
+  links = [
+    { href: base, label: "Inicio" },
+    { href: `${base}projects/`, label: "Proyectos" },
+  ];
 } else {
-  links = [base, `${base}#about`, `${base}#technologies`, `${base}#skills`, `${base}projects/`, `${base}#contact`];
+  links = [
+    { href: base, label: "Inicio" },
+    { href: `${base}#about`, label: "Sobre mí" },
+    { href: `${base}#technologies`, label: "Tecnologías" },
+    { href: `${base}#skills`, label: "Habilidades" },
+    { href: `${base}projects/`, label: "Proyectos" },
+    { href: `${base}#contact`, label: "Contacto" },
+  ];
 }
 ---
 
@@ -99,13 +118,13 @@ if (pathname === base || pathname === "/") {
       class="flex flex-col items-center gap-4 lg:gap-6 border border-dashed border-gray-500 rounded-md font-semibold text-gray-500 p-4 sm:p-2 sm:border-none sm:bg-transparent sm:flex-row"
     >
       {
-        links.map((link, i) => (
+        links.map((link) => (
           <li>
             <a
-              href={link}
+              href={link.href}
               class="relative hover:text-gray-950 dark:hover:text-white dark:text-gray-400 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-blue-500 after:to-purple-500 hover:after:w-full after:transition-all after:duration-300"
             >
-              {linkNames[i]}
+              {link.label}
             </a>
           </li>
         ))
