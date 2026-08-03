@@ -3,10 +3,8 @@ import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
 import TimelineItem from "../components/TimelineItem.astro";
 import Project from "../components/Project.astro";
-import CardService from "../components/CardService.astro";
 import EXPERIENCES from "../assets/collections/experiences.json";
 import { PROJECTS } from "../data/projects/catalog";
-import SERVICES from "../assets/collections/services.json";
 import HireServiceModal from "../components/HireServiceModal.astro";
 
 const base = import.meta.env.BASE_URL;
@@ -253,22 +251,3 @@ const base = import.meta.env.BASE_URL;
   </section>
   <HireServiceModal />
 </Layout>
-
-<script>
-  import { animate, inView, stagger } from "motion";
-
-  window.addEventListener("DOMContentLoaded", () => {
-    inView("#services", () => {
-      animate(
-        ".card-service",
-        {
-          transform: ["translateY(100%)", "translateY(0)"],
-        },
-        {
-          delay: stagger(0.2),
-          duration: 0.6,
-        }
-      );
-    });
-  });
-</script>

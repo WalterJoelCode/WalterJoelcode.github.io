@@ -1,0 +1,26 @@
+---
+import ProjectHero from "../project-documentation/ProjectHero.astro";
+import ProjectGallery from "../project-documentation/ProjectGallery.astro";
+import ProjectSection from "../project-documentation/ProjectSection.astro";
+import ObjectivesList from "../project-documentation/ObjectivesList.astro";
+import TechnologyCards from "../project-documentation/TechnologyCards.astro";
+import CollaboratorsCards from "../project-documentation/CollaboratorsCards.astro";
+import InstitutionalCards from "../project-documentation/InstitutionalCards.astro";
+import type { ProjectDetail as ProjectDetailData } from "../../data/projects/details";
+import { resolveCollaborators } from "../../data/collaborators";
+
+interface Props { project: ProjectDetailData; }
+const { project } = Astro.props;
+const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+---
+
+<div class="flex min-w-0 flex-col gap-10 overflow-hidden sm:gap-12">
+  <ProjectHero title={project.title} description={project.shortDescription} logo={project.logo} github={project.github} category={project.category} />
+  <ProjectSection title="Galería" id="galeria"><ProjectGallery images={project.gallery.map((image) => ({ ...image, src: image.src.startsWith("/projects/") ? asset(image.src) : image.src }))} /></ProjectSection>
+  <ProjectSection title="Descripción general" id="descripcion"><p class="max-w-3xl text-base leading-6 text-gray-600 dark:text-gray-400">{project.generalDescription}</p></ProjectSection>
+  {project.category === "education" && project.context && <ProjectSection title="Contextualización" id="contexto"><p class="max-w-3xl text-base leading-6 text-gray-600 dark:text-gray-400">{project.context}</p></ProjectSection>}
+  {project.category === "education" && project.institutionalCards && <ProjectSection title="Lineamientos institucionales" id="lineamientos"><InstitutionalCards cards={project.institutionalCards} /></ProjectSection>}
+  {project.category === "education" && <ProjectSection title="Objetivos" id="objetivos"><ObjectivesList objectives={project.objectives} /></ProjectSection>}
+  <ProjectSection title="Tecnologías" id="tecnologias"><TechnologyCards technologies={project.technologies} /></ProjectSection>
+  {project.collaborators && project.collaborators.length > 0 && <ProjectSection title="Colaboradores" id="colaboradores"><CollaboratorsCards collaborators={resolveCollaborators(project.collaborators)} /></ProjectSection>}
+</div>

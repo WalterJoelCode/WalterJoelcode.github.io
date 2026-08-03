@@ -9,7 +9,9 @@ const { images } = Astro.props;
     <div class="flex min-w-0 max-w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain scroll-smooth rounded-lg pb-3 [scrollbar-width:thin]" data-gallery-track tabindex="0" aria-label="Galería del proyecto">
       {images.map((image, index) => (
         <figure class="basis-full shrink-0 snap-center">
-          <img src={image.src} alt={image.alt} class="aspect-video w-full rounded-lg border border-gray-300 object-cover dark:border-neutral-800" width="960" height="540" loading={index === 0 ? "eager" : "lazy"} />
+          <button type="button" class="block w-full cursor-zoom-in rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" data-gallery-open={index} aria-label={`Ampliar imagen ${index + 1}: ${image.alt}`}>
+            <img src={image.src} alt={image.alt} class="aspect-video w-full rounded-lg border border-gray-300 object-cover dark:border-neutral-800" width="960" height="540" loading="eager" />
+          </button>
         </figure>
       ))}
     </div>
@@ -18,10 +20,6 @@ const { images } = Astro.props;
         <div class="mt-3 flex items-center justify-between gap-4">
           <div class="flex gap-2" aria-label="Indicadores de galería">
             {images.map((_, index) => <button class="size-2.5 cursor-pointer rounded-full bg-gray-300 transition-colors first:bg-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:bg-neutral-700 dark:first:bg-blue-400" aria-label={`Ir a la imagen ${index + 1}`} data-gallery-dot={index}></button>)}
-          </div>
-          <div class="flex gap-2">
-            <button class="cursor-pointer rounded-md border border-gray-300 px-3 py-1.5 text-sm font-semibold text-gray-950 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-800 dark:text-white dark:hover:bg-gray-900" data-gallery-prev aria-label="Imagen anterior">Anterior</button>
-            <button class="cursor-pointer rounded-md border border-gray-300 px-3 py-1.5 text-sm font-semibold text-gray-950 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-800 dark:text-white dark:hover:bg-gray-900" data-gallery-next aria-label="Imagen siguiente">Siguiente</button>
           </div>
         </div>
         <script>
@@ -35,8 +33,6 @@ const { images } = Astro.props;
               activeIndex = Math.max(0, Math.min(slides.length - 1, index));
               track.scrollTo({ left: slides[activeIndex]?.offsetLeft ?? 0, behavior: "smooth" });
             };
-            gallery.querySelector("[data-gallery-prev]")?.addEventListener("click", () => goTo(activeIndex - 1));
-            gallery.querySelector("[data-gallery-next]")?.addEventListener("click", () => goTo(activeIndex + 1));
             dots.forEach((dot, index) => dot.addEventListener("click", () => goTo(index)));
             track.addEventListener("scroll", () => {
               activeIndex = slides.reduce((closest, slide, index) => Math.abs(slide.offsetLeft - track.scrollLeft) < Math.abs(slides[closest].offsetLeft - track.scrollLeft) ? index : closest, 0);
@@ -46,5 +42,38 @@ const { images } = Astro.props;
         </script>
       </>
     )}
+    <dialog class="m-auto w-[min(96vw,1200px)] max-w-none rounded-xl border border-gray-300 bg-white p-3 text-gray-950 shadow-2xl backdrop:bg-black/80 dark:border-neutral-700 dark:bg-gray-950 dark:text-white" data-gallery-dialog aria-label="Imagen ampliada de la galería">
+      <div class="flex items-center justify-end">
+        <button type="button" class="cursor-pointer rounded-full p-2 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:hover:bg-neutral-800" data-gallery-close aria-label="Cerrar imagen ampliada">✕</button>
+      </div>
+      <img class="max-h-[78vh] w-full object-contain" data-gallery-modal-image alt="" />
+      {images.length > 1 && <div class="mt-3 flex items-center justify-between gap-3"><button type="button" class="cursor-pointer rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-700 dark:hover:bg-neutral-800" data-gallery-modal-prev>Anterior</button><span class="text-sm text-gray-600 dark:text-gray-400" data-gallery-modal-count></span><button type="button" class="cursor-pointer rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-700 dark:hover:bg-neutral-800" data-gallery-modal-next>Siguiente</button></div>}
+    </dialog>
+    <script>
+      document.querySelectorAll<HTMLElement>("[data-gallery]").forEach((gallery) => {
+        const track = gallery.querySelector<HTMLElement>("[data-gallery-track]");
+        const slides = [...(track?.querySelectorAll<HTMLElement>("figure") ?? [])];
+        const dialog = gallery.querySelector<HTMLDialogElement>("[data-gallery-dialog]");
+        const modalImage = gallery.querySelector<HTMLImageElement>("[data-gallery-modal-image]");
+        const modalCount = gallery.querySelector<HTMLElement>("[data-gallery-modal-count]");
+        if (!track || !dialog || !modalImage) return;
+        let activeIndex = 0;
+        const showImage = (index: number) => {
+          activeIndex = (index + slides.length) % slides.length;
+          const image = slides[activeIndex]?.querySelector<HTMLImageElement>("img");
+          if (!image) return;
+          modalImage.src = image.currentSrc || image.src;
+          modalImage.alt = image.alt;
+          if (modalCount) modalCount.textContent = `${activeIndex + 1} / ${slides.length}`;
+        };
+        gallery.querySelectorAll<HTMLButtonElement>("[data-gallery-open]").forEach((button, index) => button.addEventListener("click", () => {
+          showImage(index);
+          dialog.showModal();
+        }));
+        gallery.querySelector("[data-gallery-close]")?.addEventListener("click", () => dialog.close());
+        gallery.querySelector("[data-gallery-modal-prev]")?.addEventListener("click", () => showImage(activeIndex - 1));
+        gallery.querySelector("[data-gallery-modal-next]")?.addEventListener("click", () => showImage(activeIndex + 1));
+      });
+    </script>
   </div>
 )}

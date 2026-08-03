@@ -2,6 +2,8 @@ import projects from "../../assets/collections/projects.json";
 
 export interface ProjectCatalogItem {
   name: string;
+  category: "business" | "education";
+  shortDescription: string;
   description: string;
   technologies: string[];
   logo: `/projects/${string}.svg`;
