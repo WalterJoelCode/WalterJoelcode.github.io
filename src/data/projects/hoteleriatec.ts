@@ -7,18 +7,6 @@ export interface Collaborator {
   image?: string;
 }
 
-const galleryFiles = import.meta.glob(
-  "../../assets/projects/hoteleriatec/gallery/*.webp",
-  { eager: true, import: "default" },
-);
-
-const gallery = Object.entries(galleryFiles)
-  .sort(([firstPath], [secondPath]) => firstPath.localeCompare(secondPath))
-  .map(([path, asset]) => ({
-    src: typeof asset === "string" ? asset : (asset as { src: string }).src,
-    alt: `Captura de HoteleríaTec: ${path.split("/").pop()?.replace(/\.[^.]+$/, "").replace(/-/g, " ")}`,
-  }));
-
 const project = getProjectByName("HoteleríaTec");
 
 export const hoteleriatec = {
@@ -27,7 +15,6 @@ export const hoteleriatec = {
     "Plataforma educativa para digitalizar la atención y facturación de comensales en el área de restaurante del Centro Tecnológico perteneciente al Tecnológico Nacional.",
   logo: project.logo,
   github: project.github,
-  gallery,
   generalDescription:
     "HoteleríaTec es un sistema de información web desarrollado íntegramente desde cero utilizando Laravel, Livewire y MySQL, bajo una arquitectura moderna, segura y escalable. Su desarrollo incorpora buenas prácticas de programación, autenticación y control de acceso basado en roles, garantizando una experiencia de uso acorde con entornos profesionales. Además, integra funcionalidades de inteligencia artificial para asistir determinados procesos, generación de reportes automatizados para el seguimiento de la información y una estructura modular que facilita su mantenimiento, ampliación e incorporación de nuevas funcionalidades, convirtiéndose en una plataforma preparada para responder a futuras necesidades académicas e institucionales.",
   technologies: ["Laravel", "Livewire", "Bootstrap", "MySQL", "DomPDF"],
