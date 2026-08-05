@@ -6,7 +6,7 @@ export interface ProjectCatalogItem {
   shortDescription: string;
   description: string;
   technologies: string[];
-  logo: `/projects/${string}.svg`;
+  logo?: `/projects/${string}.svg`;
   github?: string;
   hasDocumentation: boolean;
   documentationUrl?: string;

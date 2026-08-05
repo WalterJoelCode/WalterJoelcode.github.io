@@ -1,34 +1,12 @@
 ---
-const { pathname } = Astro.url;
+import logo from "../assets/logoport.svg";
+
 const base = import.meta.env.BASE_URL;
-
-let links: { href: string; label: string }[];
-const isProjectRoute = pathname.includes("/projects") || pathname.includes("/proyectos");
-
-if (pathname === base || pathname === "/") {
-  links = [
-    { href: "#home", label: "Inicio" },
-    { href: "#about", label: "Sobre mí" },
-    { href: "#technologies", label: "Tecnologías" },
-    { href: "#skills", label: "Habilidades" },
-    { href: "#projects", label: "Proyectos" },
-    { href: "#contact", label: "Contacto" },
-  ];
-} else if (isProjectRoute) {
-  links = [
-    { href: base, label: "Inicio" },
-    { href: `${base}projects/`, label: "Proyectos" },
-  ];
-} else {
-  links = [
-    { href: base, label: "Inicio" },
-    { href: `${base}#about`, label: "Sobre mí" },
-    { href: `${base}#technologies`, label: "Tecnologías" },
-    { href: `${base}#skills`, label: "Habilidades" },
-    { href: `${base}projects/`, label: "Proyectos" },
-    { href: `${base}#contact`, label: "Contacto" },
-  ];
-}
+const links = [
+  { href: base, label: "Inicio" },
+  { href: `${base}projects/`, label: "Proyectos" },
+  { href: `${base}sobre-el-desarrollador/`, label: "Sobre el desarrollador" },
+];
 ---
 
 <header
@@ -36,7 +14,7 @@ if (pathname === base || pathname === "/") {
 >
   <a href={base} class="hover:scale-110 transition-transform duration-300">
     <img
-      src={`${base}logo.webp`}
+      src={logo.src}
       class="size-16 object-contain object-center bg-transparent"
       alt="Logo"
       width={64}
@@ -122,7 +100,7 @@ if (pathname === base || pathname === "/") {
           <li>
             <a
               href={link.href}
-              class="relative hover:text-gray-950 dark:hover:text-white dark:text-gray-400 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-blue-500 after:to-purple-500 hover:after:w-full after:transition-all after:duration-300"
+              class="relative hover:text-gray-950 dark:hover:text-white dark:text-gray-400 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-fuchsia-500 after:to-purple-500 hover:after:w-full after:transition-all after:duration-300"
             >
               {link.label}
             </a>

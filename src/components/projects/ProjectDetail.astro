@@ -14,7 +14,7 @@ const { project } = Astro.props;
 const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 ---
 
-<div class="flex min-w-0 flex-col gap-10 overflow-hidden sm:gap-12">
+<div class="flex min-w-0 flex-col gap-10 sm:gap-12">
   <ProjectHero title={project.title} description={project.shortDescription} logo={project.logo} github={project.github} category={project.category} />
   <ProjectSection title="Galería" id="galeria"><ProjectGallery images={project.gallery.map((image) => ({ ...image, src: image.src.startsWith("/projects/") ? asset(image.src) : image.src }))} /></ProjectSection>
   <ProjectSection title="Descripción general" id="descripcion"><p class="max-w-3xl text-base leading-6 text-gray-600 dark:text-gray-400">{project.generalDescription}</p></ProjectSection>
