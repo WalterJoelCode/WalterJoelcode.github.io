@@ -1,0 +1,28 @@
+---
+import type { InvestigationCatalogItem } from "../data/investigations/catalog";
+
+interface Props {
+  investigation: InvestigationCatalogItem;
+}
+
+const { investigation } = Astro.props;
+const coverUrl = `${import.meta.env.BASE_URL}${investigation.cover.replace(/^\//, "")}`;
+const detailUrl = `${import.meta.env.BASE_URL}investigaciones/${investigation.slug}/`;
+---
+
+<article class="reveal-card relative flex h-full flex-col items-stretch rounded-md bg-white p-3 duration-700 ease-out group w-full dark:bg-gray-950/30">
+  <span class="absolute inset-0 z-20 block size-full rounded-md border border-transparent bg-transparent duration-700 ease-in-out group-hover:border-gray-300 group-hover:bg-white dark:group-hover:border-neutral-800 dark:group-hover:bg-gray-950/30"></span>
+  <span class="absolute inset-0 z-10 block size-full rounded-md border border-gray-300 duration-700 ease-in-out group-hover:shadow-md dark:border-neutral-800"></span>
+  <span class="relative z-30 flex h-full flex-col duration-700 ease-in-out">
+    <img loading="lazy" src={coverUrl} class="aspect-[16/9] w-full rounded-lg border border-gray-200 object-cover dark:border-neutral-800" alt="Estudiante trabajando con PSeInt durante la investigación" width="1083" height="812" />
+    <span class="flex flex-1 flex-col w-full px-1 mt-5 mb-1 sm:mt-3">
+      <span class="flex items-start mb-0 text-base font-semibold tracking-tight text-gray-950 dark:text-gray-100">
+        <span>{investigation.title}</span>
+        <svg class="mt-1 size-2.5 shrink-0 -translate-x-1 translate-y-1 -rotate-45 stroke-current transition-all duration-200 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" viewBox="0 0 13 15" aria-hidden="true"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" transform="translate(.666667 2.333333)"><polyline class="opacity-0 transition-all duration-200 ease-out group-hover:opacity-100" points="5.33333333 0 10.8333333 5.5 5.33333333 11"></polyline><line class="-translate-x-1 opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100" x1="10.833333333" y1="5.5" x2=".833333333" y2="5.16666667"></line></g></svg>
+      </span>
+      <span class="mt-1 block text-sm text-gray-600 dark:text-gray-400">{investigation.shortDescription}</span>
+      <span class="mt-3 flex flex-wrap gap-1"><span class="text-xs text-blue-700 dark:text-blue-400">{investigation.category}</span><span class="text-xs text-blue-700 dark:text-blue-400">{investigation.year}</span></span>
+      <span class="mt-4 flex flex-1 flex-col items-start gap-3"><a href={detailUrl} class="action-button mt-auto self-end">Ver investigación</a></span>
+    </span>
+  </span>
+</article>

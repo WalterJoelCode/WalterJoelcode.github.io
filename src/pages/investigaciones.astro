@@ -1,0 +1,19 @@
+---
+import Investigation from "../components/Investigation.astro";
+import { INVESTIGATIONS } from "../data/investigations/catalog";
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout>
+  <section class="flex flex-col gap-2">
+    <h1 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-gray-950 dark:text-white">Investigaciones</h1>
+    <p class="text-base md:text-lg sm:w-3/4 text-gray-600 dark:text-gray-400 text-pretty">
+      Experiencias y buenas prácticas educativas orientadas al fortalecimiento de competencias técnicas, digitales y de resolución de problemas.
+    </p>
+  </section>
+  <section class="grid w-full grid-cols-1 gap-6 mx-auto sm:grid-cols-2 lg:grid-cols-3">
+    {INVESTIGATIONS.map((investigation) => <Investigation investigation={investigation} />)}
+  </section>
+</Layout>

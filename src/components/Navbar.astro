@@ -3,13 +3,15 @@ import logo from "../assets/logoport.svg";
 
 interface Props {
   eventMode?: boolean;
+  eventSubtitle?: string;
 }
 
-const { eventMode = false } = Astro.props;
+const { eventMode = false, eventSubtitle = "Bienvenido a la presentación de HoteleríaTec" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const links = [
   { href: base, label: "Inicio" },
   { href: `${base}projects/`, label: "Proyectos" },
+  { href: `${base}investigaciones/`, label: "Investigaciones" },
   { href: `${base}sobre-el-desarrollador/`, label: "Sobre el desarrollador" },
 ];
 ---
@@ -27,7 +29,7 @@ const links = [
         Hola
       </p>
       <p class="mt-0.5 truncate text-xs font-medium text-gray-500 sm:text-sm dark:text-gray-400">
-        Bienvenido a la presentación de HoteleríaTec
+        {eventSubtitle}
       </p>
     </div>
   ) : (

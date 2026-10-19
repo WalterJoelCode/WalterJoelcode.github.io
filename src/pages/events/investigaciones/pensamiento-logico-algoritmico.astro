@@ -1,0 +1,11 @@
+---
+import InvestigationDetail from "../../../components/investigations/InvestigationDetail.astro";
+import { getInvestigationBySlug } from "../../../data/investigations/catalog";
+import Layout from "../../../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout eventMode eventSubtitle="Bienvenido a la presentación de la investigación">
+  <InvestigationDetail investigation={getInvestigationBySlug("pensamiento-logico-algoritmico")!} showBackLink={false} />
+</Layout>

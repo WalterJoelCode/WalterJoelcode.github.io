@@ -1,0 +1,38 @@
+---
+const averageScores = [
+  { label: "Aprendizaje inicial de lógica", value: "8.9/10", width: "89%" },
+  { label: "Comprensión de ejercicios en PSeInt", value: "8.25/10", width: "82.5%" },
+  { label: "Mejora en resolución de problemas", value: "7.75/10", width: "77.5%" },
+];
+
+const surveyResults = [
+  { label: "PSeInt y pseudocódigo facilitaron la comprensión", value: "10 de 12", width: "83.3%" },
+  { label: "La práctica en PSeInt facilitó la transición a C#", value: "10 de 12", width: "83.3%" },
+  { label: "Recomiendan aplicar la estrategia con otros estudiantes", value: "11 de 12", width: "91.7%" },
+];
+---
+
+<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+  <div class="rounded-md border border-gray-300 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-gray-950/30">
+    <h3 class="text-base font-semibold text-gray-950 dark:text-white">Valoraciones promedio</h3>
+    <div class="mt-5 space-y-5">
+      {averageScores.map((result) => (
+        <div>
+          <div class="flex items-end justify-between gap-4"><p class="text-sm text-gray-600 dark:text-gray-400">{result.label}</p><p class="shrink-0 text-sm font-bold text-fuchsia-700 dark:text-fuchsia-300">{result.value}</p></div>
+          <div class="mt-2 h-2.5 overflow-hidden rounded-full bg-gray-100 dark:bg-neutral-800"><span class="block h-full rounded-full bg-gradient-to-r from-fuchsia-600 to-violet-600" style={`width: ${result.width}`}></span></div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="rounded-md border border-gray-300 bg-white p-5 shadow-sm dark:border-neutral-800 dark:bg-gray-950/30">
+    <h3 class="text-base font-semibold text-gray-950 dark:text-white">Resultados de la encuesta</h3>
+    <div class="mt-5 space-y-5">
+      {surveyResults.map((result) => (
+        <div>
+          <div class="flex items-end justify-between gap-4"><p class="text-sm leading-5 text-gray-600 dark:text-gray-400">{result.label}</p><p class="shrink-0 text-sm font-bold text-fuchsia-700 dark:text-fuchsia-300">{result.value}</p></div>
+          <div class="mt-2 h-2.5 overflow-hidden rounded-full bg-gray-100 dark:bg-neutral-800"><span class="block h-full rounded-full bg-gradient-to-r from-violet-600 to-indigo-600" style={`width: ${result.width}`}></span></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

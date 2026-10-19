@@ -7,9 +7,10 @@ import "../styles/global.css";
 
 interface Props {
   eventMode?: boolean;
+  eventSubtitle?: string;
 }
 
-const { eventMode = false } = Astro.props;
+const { eventMode = false, eventSubtitle } = Astro.props;
 const title = "Walter Joel Castil Corea | Ingeniero en Sistemas";
 const description = "Portafolio de Walter Joel Castil Corea, Ingeniero en Sistemas de Información especializado en desarrollo web y automatización.";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -58,7 +59,7 @@ const socialImage = new URL(`${import.meta.env.BASE_URL}social-preview.png`, Ast
       alt=""
       fetchpriority="high"
     />
-    <Navbar eventMode={eventMode} />
+    <Navbar eventMode={eventMode} eventSubtitle={eventSubtitle} />
     <main class="max-w-screen-lg mx-auto p-6 flex flex-col gap-12">
       <slot />
     </main>
