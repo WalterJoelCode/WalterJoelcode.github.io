@@ -1,0 +1,139 @@
+---
+import Card from "../Card.astro";
+import ProjectGallery from "../project-documentation/ProjectGallery.astro";
+import ProjectSection from "../project-documentation/ProjectSection.astro";
+import ResultsSummary from "./ResultsSummary.astro";
+import type { InvestigationCatalogItem } from "../../data/investigations/catalog";
+
+interface Props {
+  investigation: InvestigationCatalogItem;
+  showBackLink?: boolean;
+}
+
+const { investigation, showBackLink = true } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const asset = (path: string) => `${base}${path}`;
+
+const generalData = [
+  { label: "Jornada", value: "Jornada Nacional de Investigación Educativa" },
+  { label: "Centro", value: "Centro Tecnológico Monseñor Benedicto Herrera" },
+  { label: "Categoría", value: "Buenas prácticas educativas" },
+  { label: "Área temática", value: "Tecnologías, innovación y transformación digital" },
+  { label: "Autor", value: "Ing. Walter Joel Castil Corea" },
+  { label: "Período", value: "Segundo semestre de 2026" },
+];
+
+const phases = [
+  { number: "01", title: "Diagnóstico", description: "Identificación de conocimientos previos y dificultades en lógica, algoritmos y resolución de problemas con 12 protagonistas." },
+  { number: "02", title: "Resolución lógica", description: "Análisis de situaciones cotidianas y representación manual de pasos mediante esquemas y diagramas de flujo." },
+  { number: "03", title: "Pseudocódigo", description: "Construcción de soluciones ordenadas con variables, operadores, decisiones y repeticiones antes de ejecutarlas." },
+  { number: "04", title: "Aplicación en PSeInt", description: "Ejecución, comprobación y corrección de algoritmos en un entorno educativo de pseudocódigo en español." },
+  { number: "05", title: "Transición a C#", description: "Traslado de la lógica comprobada hacia la sintaxis, estructuras y herramientas de un lenguaje de programación formal." },
+];
+
+const specificObjectives = [
+  "Diagnosticar conocimientos previos y dificultades en lógica, algoritmos y resolución de problemas.",
+  "Aplicar una secuencia de cinco fases, desde el diagnóstico hasta la programación en C#.",
+  "Valorar la comprensión, autonomía y transición a C# mediante encuesta y observación docente.",
+];
+
+const contextItems = [
+  { title: "¿Qué es programación?", description: "Es el proceso de construir instrucciones ordenadas para que una computadora ejecute una solución a un problema. Para programar con claridad es necesario comprender primero los datos, las acciones y el resultado esperado." },
+  { title: "¿Qué es resolución lógica?", description: "Es el análisis de una situación para identificar qué debe resolverse, con qué información se cuenta, qué pasos deben realizarse y cuál será el resultado. En la práctica se trabajó inicialmente con situaciones cotidianas antes de usar una computadora." },
+  { title: "¿Qué es pensamiento algorítmico?", description: "Es una forma de razonamiento que permite comprender, diseñar, comprobar y mejorar un algoritmo: un procedimiento preciso que se sigue de forma sistemática hasta llegar a una solución." },
+  { title: "¿Qué es PSeInt?", description: "Es un software educativo gratuito y de código abierto para los primeros pasos en programación. Usa un pseudolenguaje sencillo en español y genera diagramas de flujo, facilitando la construcción, ejecución y comprobación de algoritmos." },
+  { title: "¿Qué es C#?", description: "Es un lenguaje de programación desarrollado por Microsoft. Permite trabajar con variables, operadores, decisiones, repeticiones, métodos, clases y colecciones de datos para implementar soluciones mediante código formal." },
+];
+
+const gallery = [
+  { src: asset("investigaciones/pensamiento-logico-algoritmico/pseint-aula.jpeg"), alt: "Estudiante construyendo una solución algorítmica con PSeInt" },
+  { src: asset("investigaciones/pensamiento-logico-algoritmico/csharp-aula.jpeg"), alt: "Estudiantes programando en C# después de trabajar con pseudocódigo y PSeInt" },
+];
+---
+
+<div class="flex min-w-0 flex-col gap-10 sm:gap-12">
+  <section class="flex min-w-0 flex-col gap-6 sm:gap-8">
+    <div class="flex max-w-3xl flex-col gap-4 sm:gap-5">
+      {showBackLink && <a href={`${base}investigaciones/`} class="flex w-fit items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-950 no-underline transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-700 dark:border-neutral-800 dark:text-white dark:hover:bg-gray-900"><svg aria-hidden="true" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>Volver a investigaciones</a>}
+      <div class="flex flex-wrap items-center gap-3 text-sm font-medium text-gray-600 dark:text-gray-400"><span>{investigation.category}</span><span aria-hidden="true">•</span><span>Jornada Nacional de Investigación Educativa</span></div>
+      <div class="flex flex-col gap-3">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl lg:text-5xl dark:text-white">{investigation.title}</h1>
+        <p class="max-w-2xl text-base leading-6 text-gray-600 sm:text-lg dark:text-gray-400">{investigation.shortDescription}</p>
+      </div>
+    </div>
+  </section>
+
+  <ProjectSection title="Contextualización" id="contextualizacion" intro="Conceptos que sustentan la estrategia de aprendizaje progresivo.">
+    <div class="max-w-3xl divide-y divide-gray-300 overflow-hidden rounded-md border border-gray-300 bg-white shadow-sm dark:divide-neutral-800 dark:border-neutral-800 dark:bg-gray-950/30" data-context-accordion>
+      {contextItems.map((item, index) => (
+        <div class:list={["context-item", { "is-open": index === 0 }]}>
+          <button type="button" class="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold text-gray-950 transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-fuchsia-700 dark:text-white dark:hover:bg-gray-900" aria-expanded={index === 0 ? "true" : "false"} aria-controls={`context-panel-${index}`} data-context-toggle><span>{item.title}</span><svg aria-hidden="true" class="context-icon size-5 shrink-0 text-fuchsia-700 dark:text-fuchsia-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" /></svg></button>
+          <div id={`context-panel-${index}`} class="context-panel" data-context-panel><div class="context-panel-content"><p class="px-5 pb-5 text-sm leading-6 text-gray-600 dark:text-gray-400">{item.description}</p></div></div>
+        </div>
+      ))}
+    </div>
+  </ProjectSection>
+
+  <ProjectSection title="Datos generales" id="datos-generales">
+    <Card className="max-w-3xl">
+      <dl class="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
+        {generalData.map((item) => <div><dt class="text-xs font-bold uppercase tracking-[0.12em] text-fuchsia-700 dark:text-fuchsia-300">{item.label}</dt><dd class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-300">{item.value}</dd></div>)}
+        <div class="sm:col-span-2"><dt class="text-xs font-bold uppercase tracking-[0.12em] text-fuchsia-700 dark:text-fuchsia-300">Título</dt><dd class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-300">Fortalecimiento del pensamiento lógico y algorítmico mediante el aprendizaje progresivo con pseudocódigo y PSeInt en protagonistas de la educación técnica.</dd></div>
+      </dl>
+    </Card>
+  </ProjectSection>
+
+  <ProjectSection title="Resumen" id="resumen">
+    <div class="max-w-3xl space-y-4 text-base leading-7 text-gray-600 dark:text-gray-400"><p>La estrategia prioriza la comprensión de un problema antes de escribir código. Parte de situaciones sencillas, avanza hacia algoritmos y los comprueba en PSeInt, para después trasladar la misma lógica a C#.</p><p>El enfoque busca reducir la dependencia de memorizar sintaxis, fortalecer la autonomía y desarrollar soluciones informáticas estructuradas ante situaciones de complejidad creciente.</p></div>
+  </ProjectSection>
+
+  <ProjectSection title="Objetivo" id="objetivo">
+    <div class="max-w-3xl rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Objetivo general</p><p class="mt-2 leading-7 text-gray-700 dark:text-gray-300">Implementar una estrategia de aprendizaje progresivo con pseudocódigo y PSeInt para fortalecer el pensamiento lógico y algorítmico, y facilitar la transición hacia C#.</p></div>
+  </ProjectSection>
+
+  <ProjectSection title="Objetivos específicos" id="objetivos-especificos">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      {specificObjectives.map((objective, index) => <Card className="gap-3 p-4"><span class="text-xs font-bold tracking-wider text-fuchsia-700 dark:text-fuchsia-300">{String(index + 1).padStart(2, "0")}</span><p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{objective}</p></Card>)}
+    </div>
+  </ProjectSection>
+
+  <ProjectSection title="Ruta de aprendizaje" id="metodologia" intro="La intervención se organizó en cinco fases que conectan el razonamiento cotidiano con la programación formal.">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">{phases.map((phase) => <Card className="gap-3"><span class="text-sm font-bold tracking-wider text-fuchsia-700 dark:text-fuchsia-300">{phase.number}</span><h3 class="text-lg font-bold text-gray-950 dark:text-white">{phase.title}</h3><p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{phase.description}</p></Card>)}</div>
+  </ProjectSection>
+
+  <ProjectSection title="Resultados alcanzados" id="resultados" intro="La encuesta y las observaciones docentes reflejaron una valoración favorable del aprendizaje gradual.">
+    <ResultsSummary />
+    <p class="max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-400">Los resultados muestran avances en la comprensión de problemas, la validación de algoritmos y la transición a C#. También señalan que la autonomía requiere práctica continua y acompañamiento gradual.</p>
+  </ProjectSection>
+
+  <ProjectSection title="Originalidad e impacto" id="impacto"><p class="max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-400">La práctica integra PSeInt como recurso metodológico dentro de una ruta progresiva aplicable a la Educación Técnica. Su aceptación entre los participantes y la mejora percibida en la resolución de problemas respaldan su adaptación a otros grupos y contextos formativos.</p></ProjectSection>
+
+  <ProjectSection title="Galería de la experiencia" id="galeria" intro="Evidencias de las actividades de diagnóstico, trabajo con PSeInt y transición a C#."><ProjectGallery images={gallery} /></ProjectSection>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-context-toggle]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = button.closest(".context-item");
+      if (!item) return;
+      const isOpen = item.classList.toggle("is-open");
+      button.setAttribute("aria-expanded", String(isOpen));
+      if (!isOpen) return;
+
+      item.closest("[data-context-accordion]")?.querySelectorAll<HTMLElement>(".context-item").forEach((other) => {
+        if (other === item) return;
+        other.classList.remove("is-open");
+        other.querySelector("[data-context-toggle]")?.setAttribute("aria-expanded", "false");
+      });
+    });
+  });
+</script>
+
+<style>
+  .context-panel { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 280ms ease, opacity 220ms ease; }
+  .context-panel-content { overflow: hidden; }
+  .context-item.is-open .context-panel { grid-template-rows: 1fr; opacity: 1; }
+  .context-icon { transition: transform 220ms ease; }
+  .context-item.is-open .context-icon { transform: rotate(45deg); }
+  @media (prefers-reduced-motion: reduce) { .context-panel, .context-icon { transition: none; } }
+</style>

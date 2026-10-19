@@ -1,0 +1,15 @@
+---
+import InvestigationDetail from "../../components/investigations/InvestigationDetail.astro";
+import { INVESTIGATIONS, getInvestigationBySlug } from "../../data/investigations/catalog";
+import Layout from "../../layouts/Layout.astro";
+
+export const prerender = true;
+export function getStaticPaths() {
+  return INVESTIGATIONS.map((investigation) => ({ params: { slug: investigation.slug } }));
+}
+
+const investigation = getInvestigationBySlug(Astro.params.slug ?? "");
+if (!investigation) return Astro.redirect(`${import.meta.env.BASE_URL}investigaciones/`);
+---
+
+<Layout><InvestigationDetail investigation={investigation} /></Layout>
