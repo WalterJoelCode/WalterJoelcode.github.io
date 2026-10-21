@@ -17,7 +17,7 @@ const links = [
 ---
 
 <header
-  class="max-w-screen-lg mx-auto flex flex-wrap justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50 lg:rounded-b-md border border-gray-300 dark:border-neutral-800 backdrop-blur-xs bg-white/95 dark:bg-gray-950/95"
+  class="glass-nav max-w-screen-lg mx-auto flex flex-wrap justify-between py-1 px-4 sm:px-6 items-center sticky top-0 z-50"
 >
   {eventMode ? (
     <div class="flex min-w-0 flex-col py-4 sm:py-5">
@@ -51,7 +51,7 @@ const links = [
       title="Cambiar modo claro u oscuro"
       aria-label="Cambiar modo claro u oscuro"
       id="theme-toggle"
-      class="flex size-10 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-900 shadow-sm transition-all duration-300 hover:rotate-12 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-700 dark:border-neutral-700 dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800"
+      class="glass-surface flex size-10 items-center justify-center rounded-xl text-gray-900 transition-all duration-300 hover:rotate-12 hover:text-fuchsia-700 dark:text-white dark:hover:text-fuchsia-300"
     >
       <svg
         id="theme-sun-icon"
@@ -115,14 +115,14 @@ const links = [
     class="hidden -translate-y-[200%] transition-transform p-4 sm:block sm:translate-y-0 sm:static sm:p-0 w-full sm:w-auto text-sm lg:text-base"
   >
     <ul
-      class="flex flex-col items-center gap-4 lg:gap-6 border border-dashed border-gray-500 rounded-md font-semibold text-gray-500 p-4 sm:p-2 sm:border-none sm:bg-transparent sm:flex-row"
+      class="flex flex-col items-center gap-4 lg:gap-6 rounded-xl font-semibold text-gray-500 p-4 sm:p-2 sm:border-none sm:bg-transparent sm:flex-row"
     >
       {
         links.map((link) => (
           <li>
             <a
               href={link.href}
-              class="relative hover:text-gray-950 dark:hover:text-white dark:text-gray-400 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-fuchsia-500 after:to-purple-500 hover:after:w-full after:transition-all after:duration-300"
+              class="relative hover:text-fuchsia-700 dark:hover:text-fuchsia-300 dark:text-gray-400 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-fuchsia-600 dark:after:bg-fuchsia-400 hover:after:w-full after:transition-all after:duration-300"
             >
               {link.label}
             </a>
@@ -189,6 +189,7 @@ const links = [
 
   function setLightTheme() {
     document.documentElement.classList.remove("dark");
+    document.documentElement.dataset.theme = "light";
     localStorage.setItem("color-theme", "light");
 
     themeMoonIcon?.classList.remove("hidden");
@@ -198,6 +199,7 @@ const links = [
   function setDarkTheme() {
     localStorage.setItem("color-theme", "dark");
     document.documentElement.classList.add("dark");
+    document.documentElement.dataset.theme = "dark";
 
     themeMoonIcon?.classList.add("hidden");
     themeSunIcon?.classList.remove("hidden");
