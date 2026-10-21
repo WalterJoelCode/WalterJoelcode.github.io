@@ -3,6 +3,7 @@ import Card from "../Card.astro";
 import ProjectGallery from "../project-documentation/ProjectGallery.astro";
 import ProjectSection from "../project-documentation/ProjectSection.astro";
 import ResultsSummary from "./ResultsSummary.astro";
+import InvestigationSubnav from "./InvestigationSubnav.astro";
 import type { InvestigationCatalogItem } from "../../data/investigations/catalog";
 
 interface Props {
@@ -49,6 +50,15 @@ const gallery = [
   { src: asset("investigaciones/pensamiento-logico-algoritmico/pseint-aula.jpeg"), alt: "Estudiante construyendo una solución algorítmica con PSeInt" },
   { src: asset("investigaciones/pensamiento-logico-algoritmico/csharp-aula.jpeg"), alt: "Estudiantes programando en C# después de trabajar con pseudocódigo y PSeInt" },
 ];
+
+const subnavItems = [
+  { id: "contextualizacion", label: "Contexto", icon: "context" },
+  { id: "datos", label: "Datos y resumen", icon: "info" },
+  { id: "objetivos", label: "Objetivos", icon: "target" },
+  { id: "metodologia", label: "Ruta de aprendizaje", icon: "route" },
+  { id: "resultados", label: "Resultados", icon: "results" },
+  { id: "impacto", label: "Impacto", icon: "impact" },
+];
 ---
 
 <div class="flex min-w-0 flex-col gap-10 sm:gap-12">
@@ -63,8 +73,10 @@ const gallery = [
     </div>
   </section>
 
-  <ProjectSection title="Contextualización" id="contextualizacion" intro="Conceptos que sustentan la estrategia de aprendizaje progresivo.">
-    <div class="max-w-3xl divide-y divide-gray-300 overflow-hidden rounded-md border border-gray-300 bg-white shadow-sm dark:divide-neutral-800 dark:border-neutral-800 dark:bg-gray-950/30" data-context-accordion>
+  <InvestigationSubnav items={subnavItems} animationHref={`${base}events/investigaciones/${investigation.slug}/welcome/`} />
+
+  <div data-investigation-panel="contextualizacion" id="investigation-panel-contextualizacion" class="px-1 sm:px-2"><ProjectSection fullWidth title="Contextualización" id="contextualizacion" intro="Conceptos que sustentan la estrategia de aprendizaje progresivo.">
+    <div class="divide-y divide-gray-300 overflow-hidden rounded-md border border-gray-300 bg-white shadow-sm dark:divide-neutral-800 dark:border-neutral-800 dark:bg-gray-950/30" data-context-accordion>
       {contextItems.map((item, index) => (
         <div class:list={["context-item", { "is-open": index === 0 }]}>
           <button type="button" class="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold text-gray-950 transition-colors hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-fuchsia-700 dark:text-white dark:hover:bg-gray-900" aria-expanded={index === 0 ? "true" : "false"} aria-controls={`context-panel-${index}`} data-context-toggle><span>{item.title}</span><svg aria-hidden="true" class="context-icon size-5 shrink-0 text-fuchsia-700 dark:text-fuchsia-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" /></svg></button>
@@ -72,43 +84,41 @@ const gallery = [
         </div>
       ))}
     </div>
-  </ProjectSection>
+  </ProjectSection></div>
 
-  <ProjectSection title="Datos generales" id="datos-generales">
-    <Card className="max-w-3xl">
+  <div data-investigation-panel="datos" id="investigation-panel-datos" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Datos generales y resumen" id="datos-generales">
+    <Card>
       <dl class="grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
         {generalData.map((item) => <div><dt class="text-xs font-bold uppercase tracking-[0.12em] text-fuchsia-700 dark:text-fuchsia-300">{item.label}</dt><dd class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-300">{item.value}</dd></div>)}
         <div class="sm:col-span-2"><dt class="text-xs font-bold uppercase tracking-[0.12em] text-fuchsia-700 dark:text-fuchsia-300">Título</dt><dd class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-300">Fortalecimiento del pensamiento lógico y algorítmico mediante el aprendizaje progresivo con pseudocódigo y PSeInt en protagonistas de la educación técnica.</dd></div>
       </dl>
     </Card>
+    <div class="space-y-4 text-base leading-7 text-gray-600 dark:text-gray-400"><p>La estrategia prioriza la comprensión de un problema antes de escribir código. Parte de situaciones sencillas, avanza hacia algoritmos y los comprueba en PSeInt, para después trasladar la misma lógica a C#.</p><p>El enfoque busca reducir la dependencia de memorizar sintaxis, fortalecer la autonomía y desarrollar soluciones informáticas estructuradas ante situaciones de complejidad creciente.</p></div>
+  </ProjectSection></div>
+
+  <div data-investigation-panel="objetivos" id="investigation-panel-objetivos" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Objetivo" id="objetivo">
+    <div class="rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Objetivo general</p><p class="mt-2 leading-7 text-gray-700 dark:text-gray-300">Implementar una estrategia de aprendizaje progresivo con pseudocódigo y PSeInt para fortalecer el pensamiento lógico y algorítmico, y facilitar la transición hacia C#.</p></div>
   </ProjectSection>
 
-  <ProjectSection title="Resumen" id="resumen">
-    <div class="max-w-3xl space-y-4 text-base leading-7 text-gray-600 dark:text-gray-400"><p>La estrategia prioriza la comprensión de un problema antes de escribir código. Parte de situaciones sencillas, avanza hacia algoritmos y los comprueba en PSeInt, para después trasladar la misma lógica a C#.</p><p>El enfoque busca reducir la dependencia de memorizar sintaxis, fortalecer la autonomía y desarrollar soluciones informáticas estructuradas ante situaciones de complejidad creciente.</p></div>
-  </ProjectSection>
-
-  <ProjectSection title="Objetivo" id="objetivo">
-    <div class="max-w-3xl rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Objetivo general</p><p class="mt-2 leading-7 text-gray-700 dark:text-gray-300">Implementar una estrategia de aprendizaje progresivo con pseudocódigo y PSeInt para fortalecer el pensamiento lógico y algorítmico, y facilitar la transición hacia C#.</p></div>
-  </ProjectSection>
-
-  <ProjectSection title="Objetivos específicos" id="objetivos-especificos">
+  <ProjectSection fullWidth title="Objetivos específicos" id="objetivos-especificos">
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
       {specificObjectives.map((objective, index) => <Card className="gap-3 p-4"><span class="text-xs font-bold tracking-wider text-fuchsia-700 dark:text-fuchsia-300">{String(index + 1).padStart(2, "0")}</span><p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{objective}</p></Card>)}
     </div>
   </ProjectSection>
+  <div class="rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Correspondencia con la estrategia nacional de educación</p><p class="mt-2 leading-7 text-gray-700 dark:text-gray-300">La investigación se corresponde con la Estrategia Nacional de Educación en Todas sus Modalidades «Bendiciones y Victorias» 2024-2026, al fortalecer una educación técnica inclusiva, innovadora y pertinente mediante el desarrollo de competencias digitales, la resolución de problemas y el aprendizaje progresivo.</p></div></div>
 
-  <ProjectSection title="Ruta de aprendizaje" id="metodologia" intro="La intervención se organizó en cinco fases que conectan el razonamiento cotidiano con la programación formal.">
+  <div data-investigation-panel="metodologia" id="investigation-panel-metodologia" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Ruta de aprendizaje" id="metodologia" intro="La intervención se organizó en cinco fases que conectan el razonamiento cotidiano con la programación formal.">
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">{phases.map((phase) => <Card className="gap-3"><span class="text-sm font-bold tracking-wider text-fuchsia-700 dark:text-fuchsia-300">{phase.number}</span><h3 class="text-lg font-bold text-gray-950 dark:text-white">{phase.title}</h3><p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{phase.description}</p></Card>)}</div>
-  </ProjectSection>
+  </ProjectSection></div>
 
-  <ProjectSection title="Resultados alcanzados" id="resultados" intro="La encuesta y las observaciones docentes reflejaron una valoración favorable del aprendizaje gradual.">
+  <div data-investigation-panel="resultados" id="investigation-panel-resultados" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Resultados alcanzados" id="resultados" intro="La encuesta y las observaciones docentes reflejaron una valoración favorable del aprendizaje gradual.">
     <ResultsSummary />
-    <p class="max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-400">Los resultados muestran avances en la comprensión de problemas, la validación de algoritmos y la transición a C#. También señalan que la autonomía requiere práctica continua y acompañamiento gradual.</p>
-  </ProjectSection>
+    <p class="text-base leading-7 text-gray-600 dark:text-gray-400">Los resultados muestran avances en la comprensión de problemas, la validación de algoritmos y la transición a C#. También señalan que la autonomía requiere práctica continua y acompañamiento gradual.</p>
+  </ProjectSection></div>
 
-  <ProjectSection title="Originalidad e impacto" id="impacto"><p class="max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-400">La práctica integra PSeInt como recurso metodológico dentro de una ruta progresiva aplicable a la Educación Técnica. Su aceptación entre los participantes y la mejora percibida en la resolución de problemas respaldan su adaptación a otros grupos y contextos formativos.</p></ProjectSection>
+  <div data-investigation-panel="impacto" id="investigation-panel-impacto" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Originalidad e impacto" id="impacto"><p class="text-base leading-7 text-gray-600 dark:text-gray-400">La práctica integra PSeInt como recurso metodológico dentro de una ruta progresiva aplicable a la Educación Técnica. Su aceptación entre los participantes y la mejora percibida en la resolución de problemas respaldan su adaptación a otros grupos y contextos formativos.</p></ProjectSection></div>
 
-  <ProjectSection title="Galería de la experiencia" id="galeria" intro="Evidencias de las actividades de diagnóstico, trabajo con PSeInt y transición a C#."><ProjectGallery images={gallery} /></ProjectSection>
+  <div class="px-1 sm:px-2"><hr class="border-0 border-t border-gray-300 dark:border-neutral-800" /><ProjectSection fullWidth title="Galería de la experiencia" id="galeria" intro="Evidencias de las actividades de diagnóstico, trabajo con PSeInt y transición a C#."><ProjectGallery images={gallery} /></ProjectSection></div>
 </div>
 
 <script>

@@ -1,0 +1,84 @@
+---
+import logoport from "../../../../assets/logoport.svg";
+const base = import.meta.env.BASE_URL;
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href={logoport.src} />
+    <title>Pensamiento lógico y algorítmico</title>
+  </head>
+  <body>
+    <main class="welcome">
+      <div class="icons" aria-hidden="true">
+        <svg class="icon icon-code" viewBox="0 0 64 64"><path d="m24 18-14 14 14 14M40 18l14 14-14 14M36 10 28 54" /></svg>
+        <svg class="icon icon-flow" viewBox="0 0 64 64"><rect x="19" y="6" width="26" height="12" rx="6"/><path d="M32 18v10M18 28h28v13H18zM32 41v8M13 49h15v10H13zM36 49h15v10H36z" /></svg>
+        <svg class="icon icon-cup" viewBox="0 0 64 64"><path d="M12 22h31v18c0 10-7 17-16 17S12 50 12 40V22ZM43 27h5c9 0 9 13 0 13h-5M21 16c-3-3 3-5 0-9M32 16c-3-3 3-5 0-9" /></svg>
+        <svg class="icon icon-logic" viewBox="0 0 64 64"><circle cx="14" cy="32" r="5"/><circle cx="50" cy="14" r="5"/><circle cx="50" cy="50" r="5"/><path d="M19 32h13M32 32l14-14M32 32l14 14" /></svg>
+      </div>
+      <section class="content">
+        <p class="category">Buenas prácticas educativas</p>
+        <h1>Fortalecimiento del pensamiento lógico y algorítmico</h1>
+        <a href={`${base}events/investigaciones/pensamiento-logico-algoritmico/`}>Leer más información <span aria-hidden="true">→</span></a>
+      </section>
+      <button class="theme-toggle" type="button" aria-label="Cambiar a modo claro" data-theme-toggle><svg data-sun-icon aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg data-moon-icon class="hidden" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20.4 15.4A8.5 8.5 0 0 1 8.6 3.6 8.5 8.5 0 1 0 20.4 15.4Z"/></svg></button>
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(html), :global(body) { min-height: 100%; margin: 0; }
+  :global(body) { background: #09090b; color: #f8f8fa; font-family: "Segoe UI", system-ui, sans-serif; color-scheme: dark; transition: background-color .25s ease, color .25s ease; }
+  .welcome { position: relative; display: grid; min-height: 100svh; place-items: center; isolation: isolate; overflow: hidden; padding: 2rem; background: radial-gradient(circle at 50% 44%, #23101d 0, #110d13 62%, #09090b 100%); }
+  .content { position: relative; z-index: 1; width: min(48rem, 100%); text-align: center; }
+  .category { margin: 0 0 1rem; color: #ff78bd; font-size: .78rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+  h1 { margin: 0; color: #ffb0d8; font-size: clamp(2.35rem, 6.2vw, 5.7rem); line-height: .98; letter-spacing: -.055em; }
+  a { display: inline-flex; align-items: center; gap: .7rem; margin-top: 2rem; border-radius: 999px; padding: .9rem 1.35rem; background: #d10072; color: #fff; font-size: .95rem; font-weight: 700; text-decoration: none; box-shadow: 0 .7rem 1.8rem rgb(209 0 114 / 30%); transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+  a:hover { background: #ad005f; box-shadow: 0 1rem 2rem rgb(209 0 114 / 30%); transform: translateY(-2px); }
+  a:focus-visible { outline: 3px solid #6d28d9; outline-offset: 4px; }
+  .icons { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .icon { position: absolute; width: clamp(4rem, 9vw, 7rem); fill: none; stroke: #ff78bd; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .16; transition: opacity .25s ease, transform .35s ease, stroke .25s ease; pointer-events: auto; }
+  .icon:hover { opacity: .5; stroke: #c4a4ff; transform: scale(1.12) rotate(7deg); }
+  .icon-code { top: 12%; left: 11%; } .icon-flow { top: 16%; right: 12%; } .icon-cup { bottom: 12%; left: 15%; } .icon-logic { right: 10%; bottom: 13%; }
+  .theme-toggle { position: fixed; right: max(1.5rem, env(safe-area-inset-right)); bottom: max(1.5rem, env(safe-area-inset-bottom)); z-index: 2; display: grid; width: 2.75rem; height: 2.75rem; place-items: center; border: 1px solid rgb(255 176 216 / .45); border-radius: 999px; padding: .7rem; background: transparent; color: #ffb0d8; cursor: pointer; transition: border-color .2s ease, color .2s ease, transform .2s ease; }
+  .theme-toggle:hover { border-color: #fff; color: #fff; transform: scale(1.08); }.theme-toggle:focus-visible { outline: 2px solid #c4a4ff; outline-offset: 4px; }.theme-toggle svg { width: 100%; height: 100%; }
+  .theme-toggle .hidden { display: none; }
+  :global(html[data-theme="light"]) body { background: #fff; color: #17171b; color-scheme: light; }
+  :global(html[data-theme="light"]) .welcome { background: radial-gradient(circle at 50% 44%, #fff 0, #fdf8fc 64%, #f6edf4 100%); }
+  :global(html[data-theme="light"]) .category { color: #a8005c; }:global(html[data-theme="light"]) h1 { color: #d10072; }:global(html[data-theme="light"]) .icon { stroke: #d10072; opacity: .12; }:global(html[data-theme="light"]) .icon:hover { stroke: #6d28d9; opacity: .42; }:global(html[data-theme="light"]) .theme-toggle { border-color: rgb(168 0 92 / .4); color: #a8005c; }:global(html[data-theme="light"]) .theme-toggle:hover { border-color: #6d28d9; color: #6d28d9; }
+  :global(::view-transition-old(root)) { animation: none; }
+  :global(::view-transition-new(root)) { animation: theme-wave .65s cubic-bezier(.22, 1, .36, 1); }
+  @keyframes theme-wave { from { clip-path: circle(0 at calc(100% - 2.9rem) calc(100% - 2.9rem)); } to { clip-path: circle(150% at calc(100% - 2.9rem) calc(100% - 2.9rem)); } }
+  @media (max-width: 560px) { .welcome { padding: 1.5rem; } .icon-code { left: 4%; } .icon-flow { right: 4%; } .icon-cup { left: 6%; } .icon-logic { right: 5%; } }
+  @media (prefers-reduced-motion: reduce) { .icon, a { transition: none; } }
+</style>
+
+<script>
+  const themeButton = document.querySelector<HTMLButtonElement>("[data-theme-toggle]");
+  const html = document.documentElement;
+  const sunIcon = document.querySelector("[data-sun-icon]");
+  const moonIcon = document.querySelector("[data-moon-icon]");
+  const applyTheme = (theme: "light" | "dark") => {
+    html.dataset.theme = theme;
+    localStorage.setItem("investigation-welcome-theme", theme);
+    themeButton?.setAttribute("aria-label", theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+    sunIcon?.classList.toggle("hidden", theme === "light");
+    moonIcon?.classList.toggle("hidden", theme === "dark");
+  };
+  const savedTheme = localStorage.getItem("investigation-welcome-theme");
+  if (savedTheme === "light" || savedTheme === "dark") applyTheme(savedTheme);
+  themeButton?.addEventListener("click", () => {
+    const nextTheme = html.dataset.theme === "dark" ? "light" : "dark";
+    if ("startViewTransition" in document) {
+      (document as Document & { startViewTransition: (update: () => void) => void }).startViewTransition(() => applyTheme(nextTheme));
+      return;
+    }
+    applyTheme(nextTheme);
+  });
+</script>
