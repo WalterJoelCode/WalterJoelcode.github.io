@@ -16,6 +16,7 @@
     "astro": "^4.16.0",
     "handlebars": "^4.7.8",
     "motion": "^11.11.0",
+    "qrcode": "^1.5.4",
     "resend": "^4.0.0",
     "tailwindcss": "^4.0.0",
     "tone": "^15.1.22",
@@ -24,7 +25,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.0",
     "@types/node": "^20.0.0",
-    "qrcode": "^1.5.4",
     "terser": "^5.48.0",
     "typescript": "^5.6.0"
   },
