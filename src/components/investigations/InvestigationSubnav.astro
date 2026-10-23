@@ -13,7 +13,7 @@ const iconPaths: Record<string, string> = {
 };
 ---
 
-<nav aria-label="Contenido de la investigación" class="sticky top-3 z-20 -mx-2 overflow-x-auto rounded-2xl border border-gray-300/80 bg-white/90 p-2 shadow-sm backdrop-blur-md [scrollbar-width:none] sm:mx-0 dark:border-neutral-800 dark:bg-gray-950/90 [&::-webkit-scrollbar]:hidden">
+<nav aria-label="Contenido de la investigación" class="secondary-navigation sticky z-20 -mx-2 overflow-x-auto rounded-2xl border border-gray-300/80 bg-white/90 p-2 shadow-sm backdrop-blur-md [scrollbar-width:none] sm:mx-0 dark:border-neutral-800 dark:bg-gray-950/90 [&::-webkit-scrollbar]:hidden">
   <ul class="flex w-full min-w-max items-center gap-1">
     {items.map((item) => (
       <li><button type="button" aria-controls={`investigation-panel-${item.id}`} aria-expanded={item.id === items[0].id ? "true" : "false"} data-investigation-nav={item.id} class="flex items-center gap-2 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-gray-600 transition-all duration-300 hover:bg-fuchsia-50 hover:text-fuchsia-800 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-fuchsia-700 aria-[expanded=true]:bg-fuchsia-700 aria-[expanded=true]:text-white dark:text-gray-300 dark:hover:bg-fuchsia-950/40 dark:hover:text-fuchsia-300 dark:aria-[expanded=true]:bg-fuchsia-700 dark:aria-[expanded=true]:text-white"><svg aria-hidden="true" class="size-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d={iconPaths[item.icon]} /></svg><span>{item.label}</span></button></li>

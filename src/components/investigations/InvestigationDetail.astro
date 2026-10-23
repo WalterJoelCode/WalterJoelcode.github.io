@@ -26,16 +26,16 @@ const generalData = [
 
 const phases = [
   { number: "01", title: "Diagnóstico", description: "Identificación de conocimientos previos y dificultades en lógica, algoritmos y resolución de problemas con 12 protagonistas." },
-  { number: "02", title: "Resolución lógica", description: "Análisis de situaciones cotidianas y representación manual de pasos mediante esquemas y diagramas de flujo." },
-  { number: "03", title: "Pseudocódigo", description: "Construcción de soluciones ordenadas con variables, operadores, decisiones y repeticiones antes de ejecutarlas." },
-  { number: "04", title: "Aplicación en PSeInt", description: "Ejecución, comprobación y corrección de algoritmos en un entorno educativo de pseudocódigo en español." },
-  { number: "05", title: "Transición a C#", description: "Traslado de la lógica comprobada hacia la sintaxis, estructuras y herramientas de un lenguaje de programación formal." },
+  { number: "02", title: "Resolución lógica de problemas", description: "Análisis de situaciones cotidianas y organización manual de los pasos mediante esquemas y diagramas de flujo, antes de usar una computadora." },
+  { number: "03", title: "Introducción al pseudocódigo", description: "Representación escrita y estructurada de las soluciones con variables, operadores, decisiones y repeticiones, priorizando la comprensión del algoritmo." },
+  { number: "04", title: "Aplicación mediante PSeInt", description: "Traslado, ejecución, comprobación y corrección de los algoritmos en un pseudolenguaje educativo en español." },
+  { number: "05", title: "Transición al lenguaje de programación", description: "Implementación en C# de la lógica previamente construida y comprobada, relacionándola con la sintaxis y palabras reservadas del lenguaje." },
 ];
 
 const specificObjectives = [
-  "Diagnosticar conocimientos previos y dificultades en lógica, algoritmos y resolución de problemas.",
-  "Aplicar una secuencia de cinco fases, desde el diagnóstico hasta la programación en C#.",
-  "Valorar la comprensión, autonomía y transición a C# mediante encuesta y observación docente.",
+  "Diagnosticar los conocimientos previos y las dificultades de los 12 protagonistas en lógica, algoritmos y resolución de problemas mediante preguntas abiertas al inicio de la intervención.",
+  "Aplicar una secuencia de cinco fases de aprendizaje progresivo, desde el diagnóstico hasta la programación en C#, con los 12 protagonistas durante el segundo semestre de 2026.",
+  "Valorar los resultados de la estrategia en la comprensión de problemas, la autonomía y la transición hacia C#, mediante la encuesta a los 12 protagonistas y las observaciones docentes al finalizar la intervención.",
 ];
 
 const contextItems = [
@@ -47,15 +47,19 @@ const contextItems = [
 ];
 
 const gallery = [
-  { src: asset("investigaciones/pensamiento-logico-algoritmico/pseint-aula.jpeg"), alt: "Estudiante construyendo una solución algorítmica con PSeInt" },
-  { src: asset("investigaciones/pensamiento-logico-algoritmico/csharp-aula.jpeg"), alt: "Estudiantes programando en C# después de trabajar con pseudocódigo y PSeInt" },
+  { src: asset("investigaciones/pensamiento-logico-algoritmico/pseint-aula.jpeg"), alt: "Estudiante construyendo una solución algorítmica con PSeInt", description: "Práctica guiada en PSeInt: las y los protagonistas convierten problemas cotidianos en una secuencia de pasos comprobable." },
+  { src: asset("investigaciones/pensamiento-logico-algoritmico/pseint-editor.png"), alt: "Editor de PSeInt con un algoritmo de ejemplo", description: "Captura del documento de investigación: construcción de un algoritmo en el editor de PSeInt antes de ejecutar la solución." },
+  { src: asset("investigaciones/pensamiento-logico-algoritmico/pseint-ejecucion.png"), alt: "Ejecución de pseudocódigo en PSeInt", description: "Resultado de ejecutar ejercicios en PSeInt; permite comprobar instrucciones, cálculos y salidas paso a paso." },
+  { src: asset("investigaciones/pensamiento-logico-algoritmico/diagrama-flujo.png"), alt: "Diagrama de flujo generado a partir de pseudocódigo", description: "Representación visual de la secuencia, decisiones y repeticiones que componen un algoritmo trabajado durante la experiencia." },
+  { src: asset("investigaciones/pensamiento-logico-algoritmico/csharp-aula.jpeg"), alt: "Estudiantes programando en C# después de trabajar con pseudocódigo y PSeInt", description: "Aplicación práctica de la lógica comprobada en PSeInt durante la transición hacia programación con C#." },
+  { src: asset("investigaciones/pensamiento-logico-algoritmico/codigo-csharp.png"), alt: "Código C# desarrollado a partir de un algoritmo", description: "Captura del documento de investigación que evidencia el traslado de la lógica algorítmica hacia instrucciones escritas en C#." },
 ];
 
 const subnavItems = [
-  { id: "contextualizacion", label: "Contexto", icon: "context" },
+  { id: "contextualizacion", label: "Introducción", icon: "context" },
   { id: "datos", label: "Datos y resumen", icon: "info" },
   { id: "objetivos", label: "Objetivos", icon: "target" },
-  { id: "metodologia", label: "Ruta de aprendizaje", icon: "route" },
+  { id: "metodologia", label: "Ruta progresiva", icon: "route" },
   { id: "resultados", label: "Resultados", icon: "results" },
   { id: "impacto", label: "Impacto", icon: "impact" },
 ];
@@ -63,11 +67,11 @@ const subnavItems = [
 
 <div class="flex min-w-0 flex-col gap-10 sm:gap-12">
   <section class="flex min-w-0 flex-col gap-6 sm:gap-8">
-    <div class="flex max-w-3xl flex-col gap-4 sm:gap-5">
+    <div class="flex max-w-5xl flex-col gap-4 sm:gap-5">
       {showBackLink && <a href={`${base}investigaciones/`} class="flex w-fit items-center gap-2 rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-950 no-underline transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-700 dark:border-neutral-800 dark:text-white dark:hover:bg-gray-900"><svg aria-hidden="true" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>Volver a investigaciones</a>}
       <div class="flex flex-wrap items-center gap-3 text-sm font-medium text-gray-600 dark:text-gray-400"><span>{investigation.category}</span><span aria-hidden="true">•</span><span>Jornada Nacional de Investigación Educativa</span></div>
       <div class="flex flex-col gap-3">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl lg:text-5xl dark:text-white">{investigation.title}</h1>
+        <h1 class="investigation-title font-bold tracking-tight text-gray-950 dark:text-white">{investigation.title}</h1>
         <p class="max-w-2xl text-base leading-6 text-gray-600 sm:text-lg dark:text-gray-400">{investigation.shortDescription}</p>
       </div>
     </div>
@@ -75,7 +79,8 @@ const subnavItems = [
 
   <InvestigationSubnav items={subnavItems} animationHref={`${base}events/investigaciones/${investigation.slug}/welcome/`} />
 
-  <div data-investigation-panel="contextualizacion" id="investigation-panel-contextualizacion" class="px-1 sm:px-2"><ProjectSection fullWidth title="Contextualización" id="contextualizacion" intro="Conceptos que sustentan la estrategia de aprendizaje progresivo.">
+  <div data-investigation-panel="contextualizacion" id="investigation-panel-contextualizacion" class="px-1 sm:px-2"><ProjectSection fullWidth title="Introducción" id="contextualizacion" intro="Antes de escribir código, es necesario comprender cómo se construye una solución.">
+    <div class="mb-6 space-y-4 text-base leading-7 text-gray-600 dark:text-gray-400"><p>Un lenguaje de programación formal exige atender al mismo tiempo la lógica del problema y una sintaxis estricta: palabras reservadas, indentación, mayúsculas y minúsculas, paréntesis, llaves, comillas, puntos y punto y coma. Cuando esas reglas aparecen antes de que exista una estrategia de solución, pueden dificultar la comprensión de quienes comienzan.</p><p>Por ello, esta práctica propone aprender primero a pensar algorítmicamente: interpretar el problema, reconocer los datos, ordenar acciones y prever el resultado. El pseudocódigo y PSeInt funcionan como puente para construir, comprobar y corregir esa lógica antes de expresarla mediante la sintaxis de C#.</p></div>
     <div class="divide-y divide-gray-300 overflow-hidden rounded-md border border-gray-300 bg-white shadow-sm dark:divide-neutral-800 dark:border-neutral-800 dark:bg-gray-950/30" data-context-accordion>
       {contextItems.map((item, index) => (
         <div class:list={["context-item", { "is-open": index === 0 }]}>
@@ -93,11 +98,11 @@ const subnavItems = [
         <div class="sm:col-span-2"><dt class="text-xs font-bold uppercase tracking-[0.12em] text-fuchsia-700 dark:text-fuchsia-300">Título</dt><dd class="mt-1 text-sm leading-6 text-gray-700 dark:text-gray-300">Fortalecimiento del pensamiento lógico y algorítmico mediante el aprendizaje progresivo con pseudocódigo y PSeInt en protagonistas de la educación técnica.</dd></div>
       </dl>
     </Card>
-    <div class="space-y-4 text-base leading-7 text-gray-600 dark:text-gray-400"><p>La estrategia prioriza la comprensión de un problema antes de escribir código. Parte de situaciones sencillas, avanza hacia algoritmos y los comprueba en PSeInt, para después trasladar la misma lógica a C#.</p><p>El enfoque busca reducir la dependencia de memorizar sintaxis, fortalecer la autonomía y desarrollar soluciones informáticas estructuradas ante situaciones de complejidad creciente.</p></div>
+    <div class="space-y-4 text-base leading-7 text-gray-600 dark:text-gray-400"><p>La práctica implementó una estrategia de aprendizaje progresivo durante el segundo semestre de 2026 con 12 protagonistas del Técnico Especialista en Programación. Inició con situaciones sencillas y avanzó hacia ejercicios de mayor razonamiento y autonomía.</p><p>Articuló la resolución lógica de problemas, el pseudocódigo y PSeInt para construir, ejecutar y comprobar algoritmos antes de la transición a C#. Así se priorizó el razonamiento y la resolución de problemas sobre la memorización de instrucciones y sintaxis.</p></div>
   </ProjectSection></div>
 
-  <div data-investigation-panel="objetivos" id="investigation-panel-objetivos" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Objetivo" id="objetivo">
-    <div class="rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Objetivo general</p><p class="mt-2 leading-7 text-gray-700 dark:text-gray-300">Implementar una estrategia de aprendizaje progresivo con pseudocódigo y PSeInt para fortalecer el pensamiento lógico y algorítmico, y facilitar la transición hacia C#.</p></div>
+  <div data-investigation-panel="objetivos" id="investigation-panel-objetivos" class="flex flex-col gap-10 px-1 sm:gap-12 sm:px-2" hidden><ProjectSection fullWidth title="Objetivo" id="objetivo">
+    <div class="rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Objetivo general</p><p class="mt-2 leading-7 text-gray-700 dark:text-gray-300">Implementar una estrategia de aprendizaje progresivo con pseudocódigo y PSeInt, orientada al fortalecimiento del pensamiento lógico y algorítmico y a la transición hacia C#, con 12 protagonistas del Técnico Especialista en Programación del Centro Tecnológico Monseñor Benedicto Herrera, durante el segundo semestre de 2026.</p></div>
   </ProjectSection>
 
   <ProjectSection fullWidth title="Objetivos específicos" id="objetivos-especificos">
@@ -105,9 +110,9 @@ const subnavItems = [
       {specificObjectives.map((objective, index) => <Card className="gap-3 p-4"><span class="text-xs font-bold tracking-wider text-fuchsia-700 dark:text-fuchsia-300">{String(index + 1).padStart(2, "0")}</span><p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{objective}</p></Card>)}
     </div>
   </ProjectSection>
-  <div class="rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Correspondencia con la estrategia nacional de educación</p><p class="mt-2 leading-7 text-gray-700 dark:text-gray-300">La investigación se corresponde con la Estrategia Nacional de Educación en Todas sus Modalidades «Bendiciones y Victorias» 2024-2026, al fortalecer una educación técnica inclusiva, innovadora y pertinente mediante el desarrollo de competencias digitales, la resolución de problemas y el aprendizaje progresivo.</p></div></div>
+  <div class="rounded-xl border border-fuchsia-200 bg-fuchsia-50/70 p-5 dark:border-fuchsia-900/60 dark:bg-fuchsia-950/20"><p class="text-xs font-bold uppercase tracking-[0.16em] text-fuchsia-800 dark:text-fuchsia-300">Correspondencia con la estrategia nacional de educación</p><p class="mt-2 leading-7 text-gray-700 dark:text-gray-300">La práctica se corresponde con el Eje 13 «Calidad Educativa», inciso 58, de la Estrategia Nacional de Educación 2024-2026, que promueve el uso de herramientas digitales para complementar y facilitar los procesos de aprendizaje. PSeInt materializa este lineamiento al apoyar la construcción, ejecución y comprobación de algoritmos antes de avanzar hacia C#.</p></div></div>
 
-  <div data-investigation-panel="metodologia" id="investigation-panel-metodologia" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Ruta de aprendizaje" id="metodologia" intro="La intervención se organizó en cinco fases que conectan el razonamiento cotidiano con la programación formal.">
+  <div data-investigation-panel="metodologia" id="investigation-panel-metodologia" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Ruta progresiva de aprendizaje" id="metodologia" intro="La práctica avanza desde la comprensión de problemas hasta la construcción y ejecución de algoritmos, para después llegar a la programación formal.">
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">{phases.map((phase) => <Card className="gap-3"><span class="text-sm font-bold tracking-wider text-fuchsia-700 dark:text-fuchsia-300">{phase.number}</span><h3 class="text-lg font-bold text-gray-950 dark:text-white">{phase.title}</h3><p class="text-sm leading-6 text-gray-600 dark:text-gray-400">{phase.description}</p></Card>)}</div>
   </ProjectSection></div>
 
@@ -118,7 +123,7 @@ const subnavItems = [
 
   <div data-investigation-panel="impacto" id="investigation-panel-impacto" class="px-1 sm:px-2" hidden><ProjectSection fullWidth title="Originalidad e impacto" id="impacto"><p class="text-base leading-7 text-gray-600 dark:text-gray-400">La práctica integra PSeInt como recurso metodológico dentro de una ruta progresiva aplicable a la Educación Técnica. Su aceptación entre los participantes y la mejora percibida en la resolución de problemas respaldan su adaptación a otros grupos y contextos formativos.</p></ProjectSection></div>
 
-  <div class="px-1 sm:px-2"><hr class="border-0 border-t border-gray-300 dark:border-neutral-800" /><ProjectSection fullWidth title="Galería de la experiencia" id="galeria" intro="Evidencias de las actividades de diagnóstico, trabajo con PSeInt y transición a C#."><ProjectGallery images={gallery} /></ProjectSection></div>
+  <div class="px-1 pt-10 sm:px-2 sm:pt-12"><hr class="border-0 border-t border-gray-300 dark:border-neutral-800" /><ProjectSection fullWidth title="Galería de la experiencia" id="galeria" intro="Evidencias de las actividades de diagnóstico, trabajo con PSeInt y transición a C#."><ProjectGallery images={gallery} /></ProjectSection></div>
 </div>
 
 <script>
@@ -140,6 +145,7 @@ const subnavItems = [
 </script>
 
 <style>
+  .investigation-title { font-size: clamp(1.75rem, 3vw, 2.25rem) !important; line-height: 1.14; }
   .context-panel { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows 280ms ease, opacity 220ms ease; }
   .context-panel-content { overflow: hidden; }
   .context-item.is-open .context-panel { grid-template-rows: 1fr; opacity: 1; }

@@ -3,6 +3,7 @@
 @theme { --breakpoint-xs: 32rem; }
 
 :root {
+  --primary-navbar-height: 5rem;
   --color-primary: #d10072;
   --color-primary-hover: #ad005f;
   --color-background: #ffffff;
@@ -50,6 +51,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .glass-surface, .glass-nav, .glass-footer, .glass-card, .modal-surface { background: var(--glass-background); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); }
 @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) { .glass-surface, .glass-nav, .glass-footer, .glass-card, .modal-surface { -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); } }
 .glass-nav { border-radius: 0 0 18px 18px; }
+.secondary-navigation { top: calc(var(--primary-navbar-height) + 0.75rem); }
 .glass-footer { border-radius: 18px 18px 0 0; }
 .glass-card { border-radius: var(--radius-card); }
 .glass-card {
@@ -89,4 +91,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .reveal-section.is-visible { opacity: 1; transform: translateY(0); }
 [data-project-panel].is-active { animation: project-panel-in 320ms cubic-bezier(.22, 1, .36, 1); }
 @keyframes project-panel-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+::view-transition-old(root) { animation: none; }
+::view-transition-new(root) { animation: theme-wave 620ms cubic-bezier(.22, 1, .36, 1); }
+@keyframes theme-wave { from { clip-path: circle(0 at var(--theme-wave-x, 50%) var(--theme-wave-y, 50%)); } to { clip-path: circle(150% at var(--theme-wave-x, 50%) var(--theme-wave-y, 50%)); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } .reveal-card, .reveal-section { opacity: 1; transform: none; transition: none; } [data-project-panel].is-active { animation: none; } }

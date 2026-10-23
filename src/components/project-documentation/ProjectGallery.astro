@@ -1,5 +1,5 @@
 ---
-interface Image { src: string; alt: string; }
+interface Image { src: string; alt: string; description?: string; }
 interface Props { images: Image[]; }
 const { images } = Astro.props;
 ---
@@ -12,6 +12,7 @@ const { images } = Astro.props;
           <button type="button" class="block w-full cursor-zoom-in rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700" data-gallery-open={index} aria-label={`Ampliar imagen ${index + 1}: ${image.alt}`}>
             <img src={image.src} alt={image.alt} class="aspect-video w-full rounded-lg border border-gray-300 object-cover dark:border-neutral-800" width="960" height="540" loading="eager" />
           </button>
+          {image.description && <figcaption class="mt-3 text-sm leading-6 text-gray-600 dark:text-gray-400">{image.description}</figcaption>}
         </figure>
       ))}
     </div>
@@ -47,6 +48,7 @@ const { images } = Astro.props;
         <button type="button" class="cursor-pointer rounded-full p-2 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fuchsia-700 dark:hover:bg-neutral-800" data-gallery-close aria-label="Cerrar imagen ampliada"><svg aria-hidden="true" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
       </div>
       <img class="mx-auto max-h-[82vh] max-w-full object-contain" data-gallery-modal-image alt="" />
+      <p class="mx-auto mt-3 max-w-4xl text-sm leading-6 text-gray-600 dark:text-gray-400" data-gallery-modal-description></p>
       {images.length > 1 && <div class="mt-3 flex items-center justify-between gap-3"><button type="button" class="cursor-pointer rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-700 dark:hover:bg-neutral-800" data-gallery-modal-prev>Anterior</button><span class="text-sm text-gray-600 dark:text-gray-400" data-gallery-modal-count></span><button type="button" class="cursor-pointer rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700 dark:border-neutral-700 dark:hover:bg-neutral-800" data-gallery-modal-next>Siguiente</button></div>}
     </dialog>
     <script is:inline>
@@ -56,6 +58,7 @@ const { images } = Astro.props;
         const dialog = gallery.querySelector("[data-gallery-dialog]");
         const modalImage = gallery.querySelector("[data-gallery-modal-image]");
         const modalCount = gallery.querySelector("[data-gallery-modal-count]");
+        const modalDescription = gallery.querySelector("[data-gallery-modal-description]");
         if (!track || !dialog || !modalImage) return;
         let activeIndex = 0;
         const showImage = (index) => {
@@ -64,6 +67,7 @@ const { images } = Astro.props;
           if (!image) return;
           modalImage.src = image.currentSrc || image.src;
           modalImage.alt = image.alt;
+          if (modalDescription) modalDescription.textContent = slides[activeIndex]?.querySelector("figcaption")?.textContent ?? "";
           if (modalCount) modalCount.textContent = `${activeIndex + 1} / ${slides.length}`;
         };
         gallery.querySelectorAll("[data-gallery-open]").forEach((button, index) => button.addEventListener("click", () => {
