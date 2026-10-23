@@ -10,8 +10,8 @@ export interface InvestigationCatalogItem {
 export const INVESTIGATIONS: InvestigationCatalogItem[] = [
   {
     slug: "pensamiento-logico-algoritmico",
-    title: "Fortalecimiento del pensamiento lógico y algorítmico",
-    shortDescription: "Una práctica educativa progresiva con pseudocódigo, PSeInt y C# para fortalecer la resolución de problemas en estudiantes de programación.",
+    title: "Fortalecimiento del pensamiento lógico y algorítmico mediante el aprendizaje progresivo con pseudocódigo y PSeInt en protagonistas de la educación técnica",
+    shortDescription: "Buena práctica educativa que parte de la resolución lógica de problemas, avanza con pseudocódigo y PSeInt, y prepara la transición fundamentada hacia C#.",
     category: "Buenas prácticas educativas",
     year: "2026",
     cover: "/investigaciones/pensamiento-logico-algoritmico/pseint-aula.jpeg",

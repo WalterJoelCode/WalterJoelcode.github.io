@@ -52,7 +52,7 @@ const socialImage = new URL(`${import.meta.env.BASE_URL}social-preview.png`, Ast
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content="Walter Joel Castil Corea — Ingeniero en Sistemas de Información" />
   </head>
-  <body>
+  <body class="flex min-h-screen flex-col">
     <img
       class="ambient-background fixed top-0 left-0 size-full -z-10 blur-2xl"
       src={background.src}
@@ -60,7 +60,7 @@ const socialImage = new URL(`${import.meta.env.BASE_URL}social-preview.png`, Ast
       fetchpriority="high"
     />
     <Navbar eventMode={eventMode} eventSubtitle={eventSubtitle} />
-    <main class="max-w-screen-lg mx-auto p-6 flex flex-col gap-12">
+    <main class="max-w-screen-lg mx-auto flex w-full flex-1 flex-col gap-12 p-6">
       <slot />
     </main>
     <Footer />
